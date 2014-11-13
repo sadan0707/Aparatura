@@ -87,10 +87,10 @@ public class DBAdapter {
 		//return db.delete(BAZA_TABELA, KLUCZ_GLOWNY+"=" + rowId , null)>0;	
 			//}
 	
-	//public Cursor wezWszystkieSprzety () {
-		//return db.query(BAZA_TABELA, new String[] {KLUCZ_GLOWNY, 
-			//	KLUCZ_NAZWA, KLUCZ_MODEL}, null, null, null, null, null);
-			//}
+	public Cursor wezWszystkieSprzety () {
+		return db.query(DATABASE_TABLE, new String[] {KLUCZ_GLOWNY, 
+				KLUCZ_NAZWA, KLUCZ_MODEL}, null, null, null, null, null);
+			}
 	
 	public Cursor wezJedenSprzet(long rowId) throws SQLException 
 	{
@@ -103,14 +103,14 @@ public class DBAdapter {
 		return mCursor;
 	}
 	
-	//public boolean aktualizujSprzet(long rowId, String nazwa, String model) {
-		//ContentValues args = new ContentValues();
-		//args.put(KLUCZ_NAZWA, nazwa);
-		//args.put(KLUCZ_MODEL, model);
+	public boolean aktualizujSprzet(long rowId, String nazwa, String model) {
+		ContentValues args = new ContentValues();
+		args.put(KLUCZ_NAZWA, nazwa);
+		args.put(KLUCZ_MODEL, model);
 		
-		//return db.update(BAZA_TABELA, args, KLUCZ_GLOWNY +"="+rowId, null)>0;
+		return db.update(DATABASE_TABLE, args, KLUCZ_GLOWNY +"="+rowId, null)>0;
 		
-	//}
+	}
 
 
 }
