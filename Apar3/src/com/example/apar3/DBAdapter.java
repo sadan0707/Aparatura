@@ -16,20 +16,19 @@ public class DBAdapter {
 	private static final String KLUCZ_MODEL = "model";
 	private static final String TAG = "DBAdapter";
 	
-	private static final String NAZWA_BAZY = "Baza sprzetow";
-	private static final String BAZA_TABELA = "Tabela sprzetow";
-	private static final int WERSJA_BAZY = 1;
+	private static final String DATABASE_NAME = "Baza sprzetow";
+	private static final String DATABASE_TABLE = "tsprzetow";
+	private static final int DATABASE_VERSION = 1;
 	
-	private static final String STWORZ_BAZE =
-			"create table Tabela sprzetow(_id integer primary key autoincrement"
-					+"nazwa text not null"
-					+"model text not null);";
+	private static final String DATABASE_CREATE =
+			"create table tsprzetow(_id integer primary key autoincrement,"
+					+"nazwa text not null, model text not null);";
 	
 	final Context context;
 	
-	SQLiteDatabase db;
-	DatabaseHelper DBHelper;
 	
+	DatabaseHelper DBHelper;
+	SQLiteDatabase db;
 
 	public DBAdapter(Context ctx) {
 		this.context = ctx;
@@ -37,16 +36,17 @@ public class DBAdapter {
 		
 	}
 	
-	public class DatabaseHelper extends SQLiteOpenHelper{
+	private static class DatabaseHelper extends SQLiteOpenHelper
+	{
 		DatabaseHelper(Context context) 
 		{
-			super(context, NAZWA_BAZY, null, WERSJA_BAZY);
+			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			try{
-				db.execSQL(STWORZ_BAZE);
+				db.execSQL(DATABASE_CREATE);
 			} catch(SQLException e){
 				e.printStackTrace();
 			}
@@ -55,9 +55,9 @@ public class DBAdapter {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			Log.w(TAG,"Upgrading database from version"+oldVersion+"to"
-					+ newVersion+",witch will destroy all old data");
-			db.execSQL("DROP TABLE IF EXISTS Tabela sprzetow");
+			Log.w(TAG,"Upgrading database from version" + oldVersion + "to"
+					+ newVersion + ",witch will destroy all old data");
+			db.execSQL("DROP TABLE IF EXISTS tsprzetow");
 			onCreate(db);
 			
 		}
@@ -75,39 +75,42 @@ public class DBAdapter {
 		DBHelper.close();
 		}
 	
-	public long wstawSprzet(String nazwa, String model) {
-		ContentValues initialValueas = new ContentValues();
-		initialValueas.put(KLUCZ_NAZWA, nazwa);
-		initialValueas.put(KLUCZ_MODEL, model);
-		return db.insert(BAZA_TABELA, null, initialValueas);
+	public long wstawSprzet(String nazwa, String model) 
+	{
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(KLUCZ_NAZWA, nazwa);
+		initialValues.put(KLUCZ_MODEL, model);
+		return db.insert(DATABASE_TABLE, null, initialValues);
 	}
 	
-	public boolean wyrzucSprzet(long rowId) {
-		return db.delete(BAZA_TABELA, KLUCZ_GLOWNY+"=" + rowId , null)>0;	
-			}
+	//public boolean wyrzucSprzet(long rowId) {
+		//return db.delete(BAZA_TABELA, KLUCZ_GLOWNY+"=" + rowId , null)>0;	
+			//}
 	
-	public Cursor wezWszystkieSprzety () {
-		return db.query(BAZA_TABELA, new String[] {KLUCZ_GLOWNY, 
-				KLUCZ_NAZWA, KLUCZ_MODEL}, null, null, null, null, null);
-			}
+	//public Cursor wezWszystkieSprzety () {
+		//return db.query(BAZA_TABELA, new String[] {KLUCZ_GLOWNY, 
+			//	KLUCZ_NAZWA, KLUCZ_MODEL}, null, null, null, null, null);
+			//}
 	
-	public Cursor wezJedenSprzet(long rowId) throws SQLException {
-		Cursor mCursor = db.query(true, BAZA_TABELA, new String[] {KLUCZ_GLOWNY, 
+	public Cursor wezJedenSprzet(long rowId) throws SQLException 
+	{
+		Cursor mCursor = 
+				db.query(true, DATABASE_TABLE, new String[] {KLUCZ_GLOWNY, 
 				KLUCZ_NAZWA, KLUCZ_MODEL}, KLUCZ_GLOWNY+"="+rowId, null, null, null, null, null);
-		if(mCursor !=null){
+		if(mCursor != null){
 			mCursor.moveToFirst();
 		}
 		return mCursor;
 	}
 	
-	public boolean aktualizujSprzet(long rowId, String nazwa, String model) {
-		ContentValues args = new ContentValues();
-		args.put(KLUCZ_NAZWA, nazwa);
-		args.put(KLUCZ_MODEL, model);
+	//public boolean aktualizujSprzet(long rowId, String nazwa, String model) {
+		//ContentValues args = new ContentValues();
+		//args.put(KLUCZ_NAZWA, nazwa);
+		//args.put(KLUCZ_MODEL, model);
 		
-		return db.update(BAZA_TABELA, args, KLUCZ_GLOWNY +"="+rowId, null)>0;
+		//return db.update(BAZA_TABELA, args, KLUCZ_GLOWNY +"="+rowId, null)>0;
 		
-	}
+	//}
 
 
 }

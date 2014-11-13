@@ -1,42 +1,42 @@
 package com.example.apar3;
 
-import android.app.Activity;
-import android.R;
+
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 
 public class MainActivity extends Activity {
 
 	DBAdapter db;
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_item);
+       
+    TextView wypisz_nazwe;
+    TextView wypisz_model;
     
-        
-        	DBAdapter db;
-            
-                
+    String nazwa, model;
+    
+   
+	
+	public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+                	                   
                 db = new DBAdapter(this);
-                Cursor c;
+                
                 
                 DadajSprzet();
-                DajWszystkieSprzety();
+                //DajWszystkieSprzety();
                 DajSprzet();
-                AktualizujSprzet();
-                UsunSprzet();
-                
+               // AktualizujSprzet();
+                //UsunSprzet();
+                //WyswietlSprzet();
+                      
             }
                 
-                private void DadajSprzet() {
+                public void DadajSprzet() {
             		db.open();
             		if(db.wstawSprzet("APARAT RTG", "INFINIX FX")>=0) {
             			Toast.makeText(this, "Dodanie powiodlo sie!!!", Toast.LENGTH_LONG).show();
@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
             	}
         	
         	
-        	public void DajWszystkieSprzety() {
+        	/*public void DajWszystkieSprzety() {
         		db.open();
         		Cursor c = db.wezWszystkieSprzety();
         		if(c.moveToFirst())
@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         	
         	db.close();
         		
-        	}
+        	} */
 
 
         	public void DajSprzet() {
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
         		db.close();
         	}
 
-            public void AktualizujSprzet() {
+            /*public void AktualizujSprzet() {
         	
         		db.open();
         		if (db.aktualizujSprzet(1,"APARAT RTG", "INFINIX FX"))
@@ -82,14 +82,24 @@ public class MainActivity extends Activity {
             }
             
         	
-            public void UsunSprzet() {
+            //public void UsunSprzet() {
         		// TODO Auto-generated method stub
         		
-        	}
+        	//} */
         	
             public void WyswietlSprzet(Cursor c) {
-        		Toast.makeText(this, "id:"+ getString(0)+"\n"+"Nazwa"+getString(1)+"\n"
-        				+"Model:"+getString(2), Toast.LENGTH_LONG).show();
+        		
+            	final TextView wypisz_nazwe = (TextView) findViewById(R.id.textView1);
+            	final TextView wypisz_model = (TextView) findViewById(R.id.textView2);
+            	
+            	String nazwa = c.getString(1);
+            	String model = c.getString(2);
+            	
+            	wypisz_nazwe.setText(nazwa);
+            	wypisz_model.setText(model); 
+            	
+            	Toast.makeText(this, "id:" + c.getString(0) + "\n" + "Nazwa" + c.getString(1) + "\n"
+        				+ "Model:" + c.getString(2), Toast.LENGTH_LONG).show();
         		
         	}
         	
@@ -99,22 +109,4 @@ public class MainActivity extends Activity {
     }
 
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    } 
-}    */
+  
