@@ -2,19 +2,36 @@ package com.example.apar3;
 
 
 //import android.R;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
+import android.content.ClipData.Item;
+import android.content.CursorLoader;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
 
 
 
 public class MainActivity extends Activity {
+
+	private static final SQLiteDatabase DBAdapter = null;
+
+
+	private Cursor c;
+	
 
 	DBAdapter db;
        
@@ -23,6 +40,13 @@ public class MainActivity extends Activity {
     String pobrana_nazwa, pobrany_model, zwracana_nazwa, zwacany_model;
     Button wyswietl, pobierz;
     EditText pobierz_nazwe, pobierz_model;
+    SimpleCursorAdapter adapter;
+    
+   
+    
+    //ListView av;
+    
+    
     
    
 	
@@ -63,8 +87,9 @@ public class MainActivity extends Activity {
 					wyswietl.setOnClickListener(new OnClickListener() {
 						
 						public void onClick(View v) {
-							setContentView(R.layout.lista_wpisanych);
-							//DadajSprzet();
+							//WyswietlSprzet(c);
+							
+							DajWszystkieSprzety();
 							
 							
 						}
@@ -84,7 +109,7 @@ public class MainActivity extends Activity {
 					db.open();
             		if(db.wstawSprzet(pobierz_nazwe.getText().toString(), pobierz_model.getText().toString())>=0) {
             			Toast.makeText(this, "Dodanie powiodlo sie!!!", Toast.LENGTH_LONG).show();
-            			//AktualizujSprzet();
+            			AktualizujSprzet();
             			DajWszystkieSprzety();
             		}
             		db.close();
@@ -92,19 +117,31 @@ public class MainActivity extends Activity {
             	}
         	
         	
-        	public void DajWszystkieSprzety() {
-        		db.open();
-        		Cursor c = db.wezWszystkieSprzety();
-        		if(c.moveToFirst())
-        			do {
-        				WyswietlSprzet(c);
-        			} while (c.moveToNext());
-
         	
-        	
-        	db.close();
+			public void DajWszystkieSprzety() {
+        		  		
+        		setContentView(R.layout.lista_wpisanych);  		
+        		 db = new DBAdapter(this);
         		
-        	}
+        		 db.open();
+        		
+        		c = db.wezWszystkieSprzety();
+        		adapter = new SimpleCursorAdapter(this,
+        				R.layout.rejestr, c,
+        				new String[] {db.KLUCZN, db.KLUCZM},
+        				new int[] {R.id.wyswietlNazwa, R.id.wyswietlModel});
+
+        		
+        		ListView av = (ListView)findViewById(R.id.lista1);
+        		av.setAdapter(adapter);
+        	
+        		db.close();
+        	} 
+        	
+        		
+
+        		
+        	
 
 
         	public void DajSprzet() {
@@ -135,8 +172,8 @@ public class MainActivity extends Activity {
         	
             public void WyswietlSprzet(Cursor c) {
         		
-            	final TextView wypisz_nazwe = (TextView) findViewById(R.id.textView1);
-            	final TextView wypisz_model = (TextView) findViewById(R.id.textView2);
+            	final TextView wypisz_nazwe = (TextView) findViewById(R.id.textNazwa);
+            	final TextView wypisz_model = (TextView) findViewById(R.id.textModel);
             	
             	String nazwa = c.getString(1);
             	String model = c.getString(2);
@@ -148,6 +185,8 @@ public class MainActivity extends Activity {
         				+ "Model:" + c.getString(2), Toast.LENGTH_LONG).show();
         		
         	}
+            
+            
         	
         
  
