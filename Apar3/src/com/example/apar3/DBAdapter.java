@@ -19,12 +19,11 @@ public class DBAdapter {
 	static final String TAG = "DBAdapter";
 	
 	static final String DATABASE_NAME = "Baza sprzetow";
-	static final String DATABASE_TABLE = "tsprz";
+	static final String DATABASE_TABLE = "contacts";
 	static final int DATABASE_VERSION = 1;
 	
 	static final String DATABASE_CREATE =
-			"create table tsprz(_id integer primary key autoincrement,"
-					+"nazwa text not null, model text not null);";
+			"create table" + DATABASE_TABLE + "(" + KLUCZG + "integer primary key autoincrement," + KLUCZN + "text not null," + KLUCZM + " text not null);";
 	
 	final Context context;
 	
@@ -59,7 +58,7 @@ public class DBAdapter {
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			Log.w(TAG,"Upgrading database from version" + oldVersion + "to"
 					+ newVersion + ",witch will destroy all old data");
-			db.execSQL("DROP TABLE IF EXISTS tsprz");
+			db.execSQL("DROP TABLE IF EXISTS" + DATABASE_TABLE);
 			onCreate(db);
 			
 		}

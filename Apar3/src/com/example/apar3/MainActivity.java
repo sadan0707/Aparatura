@@ -14,6 +14,8 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -27,7 +29,7 @@ import android.app.AlertDialog;
 
 public class MainActivity extends Activity {
 
-	private static final SQLiteDatabase DBAdapter = null;
+	//private static final SQLiteDatabase DBAdapter = null;
 
 
 	private Cursor c;
@@ -38,7 +40,7 @@ public class MainActivity extends Activity {
     TextView wypisz_nazwe, wypisz_model;
     
     String pobrana_nazwa, pobrany_model, zwracana_nazwa, zwacany_model;
-    Button wyswietl, pobierz;
+    Button wyswietl, pobierz, dodawanie, lista, zd_odb, zgloszenie;
     EditText pobierz_nazwe, pobierz_model;
     SimpleCursorAdapter adapter;
     
@@ -53,12 +55,16 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        setContentView(R.layout.activity_main);
-                	                   
-                db = new DBAdapter(this);
-                
-                
-                EkranGlowny(); 
+        
+        
+        
+        
+        
+        db = new DBAdapter(this);
+       
+        EkranGlowny();
+        
+        
                 
                 //DadajSprzet();
                 //DajWszystkieSprzety();
@@ -68,28 +74,151 @@ public class MainActivity extends Activity {
                 //WyswietlSprzet();
                       
             }
+	
+	
+                public void EkranGlowny() {
+                	
+                	setContentView(R.layout.activity_main);
+                	
+                	Button dodawanie = (Button)findViewById(R.id.przycisk_dodawanie);
+                	Button zd_odb = (Button)findViewById(R.id.zd_odb);
+                	Button lista = (Button)findViewById(R.id.przycisk_lista);
+                	Button zgloszenie = (Button)findViewById(R.id.przycisk_zgloszenie);
+                	
+                	dodawanie.setOnClickListener (
+                			new OnClickListener() {
+                				public void onClick(View v) {
+                					EkranWstawiania();
+                				}
+                			});
+                	
+                	zd_odb.setOnClickListener(
+                			new OnClickListener ()
+                			{
+                				public void onClick(View v) {
+                					EkranZdawczoOdbiorczego();
+                				}
+                				
+                			});
+                	
+                	lista.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranListy();
+                				}
+                			});
+                	
+                	zgloszenie.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranZgloszenia();
+                				}
+                			});
+                	
+                	
                 
+               
+                }
                 
-				public void EkranGlowny() {
-					Button pobierz = (Button)findViewById(R.id.button1);
-					Button wyswietl = (Button)findViewById(R.id.button2);
+				protected void EkranZgloszenia() {
+					// TODO Auto-generated method stub
+					setContentView(R.layout.activity_zgloszenie);
 					
-					pobierz.setOnClickListener(new OnClickListener() {
-						
-						public void onClick(View v) {
-							DadajSprzet();
+					Button przycisk_powrot1 = (Button)findViewById(R.id.przycisk_powrot1);
+					
+					przycisk_powrot1.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranGlowny();
+                				}
+                			});
+					
+				}
+
+
+				protected void EkranListy() {
+					// TODO Auto-generated method stub
+					setContentView(R.layout.activity_ekran_listy);
+					
+					Button przycisk_powrot4 = (Button)findViewById(R.id.przycisk_powrot4);
+					
+					przycisk_powrot4.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranGlowny();
+                				}
+                			});
+					
+				}
+
+
+				protected void EkranZdawczoOdbiorczego() {
+					// TODO Auto-generated method stub
+					setContentView(R.layout.activity_zdawczo_odbiorczy1);
+					
+					String[] sprzety = {"KARDIOMONITOR", "KARDIOTOKOGRAF", "APARAT RTG", "APARAT EKG"}; 
+					AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
+					ArrayAdapter<String> adapter = new ArrayAdapter<String> (this, android.R.layout.simple_dropdown_item_1line);
+					
+					textView.setThreshold(3);
+					textView.setAdapter(adapter);
+					
+					Button przycisk_powrot3 = (Button)findViewById(R.id.przycisk_powrot3);
+					
+					przycisk_powrot3.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranGlowny();
+                				}
+                			});
+					
+				}
+
+
+				public void EkranWstawiania() {
+					setContentView(R.layout.activity_wstawianie);
+					
+					Button pobierz = (Button)findViewById(R.id.zd_odb);
+					Button wyswietl = (Button)findViewById(R.id.przycisk_lista);
+					
+					Button przycisk_powrot2 = (Button)findViewById(R.id.przycisk_powrot2);
+					
+					przycisk_powrot2.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranGlowny();
+                				}
+                			});
+					
+					
+					db.open();        	                   
+					 
+					Toast.makeText(this, "Baza otwarta", Toast.LENGTH_LONG).show();
+					
+					pobierz.setOnClickListener(
 							
+							new OnClickListener() {
+								public void onClick(View v) {
 							
+									DadajSprzet();
+														
 						}
 					});
 					
 					
-					wyswietl.setOnClickListener(new OnClickListener() {
-						
-						public void onClick(View v) {
+					wyswietl.setOnClickListener(
+							new OnClickListener() {
+												
+								public void onClick(View v) {
 							//WyswietlSprzet(c);
 							
-							DajWszystkieSprzety();
+									DajWszystkieSprzety();
 							
 							
 						}
@@ -106,13 +235,13 @@ public class MainActivity extends Activity {
 					
 					
 					
-					db.open();
+					
             		if(db.wstawSprzet(pobierz_nazwe.getText().toString(), pobierz_model.getText().toString())>=0) {
             			Toast.makeText(this, "Dodanie powiodlo sie!!!", Toast.LENGTH_LONG).show();
             			AktualizujSprzet();
             			DajWszystkieSprzety();
             		}
-            		db.close();
+            		//db.close();
             		
             	}
         	
@@ -121,9 +250,9 @@ public class MainActivity extends Activity {
 			public void DajWszystkieSprzety() {
         		  		
         		setContentView(R.layout.lista_wpisanych);  		
-        		 db = new DBAdapter(this);
+        		 //db = new DBAdapter(this);
         		
-        		 db.open();
+        		
         		
         		c = db.wezWszystkieSprzety();
         		adapter = new SimpleCursorAdapter(this,
