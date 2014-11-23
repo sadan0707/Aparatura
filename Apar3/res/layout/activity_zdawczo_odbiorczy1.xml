@@ -2,20 +2,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent" >
         
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:scrollbars="horizontal" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/przycisk_powrot3"
@@ -25,9 +22,8 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
             android:text="Protokoł Zdawczo - Odbiorczy"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="40sp"
@@ -35,10 +31,22 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dziś" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" >
+        android:layout_height="wrap_content" >
 
         <RadioGroup
             android:id="@+id/radioGroup1"
@@ -62,23 +70,8 @@
                 android:layout_marginLeft="30dp"
                 android:text="Użyczenie"
                 android:textSize="25dp" />
-
         </RadioGroup>
-
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dziś" />
 
     <DatePicker
         android:id="@+id/datePicker1"

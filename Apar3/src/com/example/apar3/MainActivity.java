@@ -29,7 +29,7 @@ import android.app.AlertDialog;
 
 public class MainActivity extends Activity {
 
-	//private static final SQLiteDatabase DBAdapter = null;
+	//private static final SQLiteDatabase DBAdapter = null;ble ble
 
 
 	private Cursor c;
@@ -39,10 +39,12 @@ public class MainActivity extends Activity {
        
     TextView wypisz_nazwe, wypisz_model;
     
-    String pobrana_nazwa, pobrany_model, zwracana_nazwa, zwacany_model;
+    String pobrana_nazwa, pobrany_model, zwracana_nazwa, zwacany_model, sprzety;
     Button wyswietl, pobierz, dodawanie, lista, zd_odb, zgloszenie;
     EditText pobierz_nazwe, pobierz_model;
     SimpleCursorAdapter adapter;
+    
+    AutoCompleteTextView textView;
     
    
     
@@ -162,7 +164,7 @@ public class MainActivity extends Activity {
 					
 					String[] sprzety = {"KARDIOMONITOR", "KARDIOTOKOGRAF", "APARAT RTG", "APARAT EKG"}; 
 					AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
-					ArrayAdapter<String> adapter = new ArrayAdapter<String> (this, android.R.layout.simple_dropdown_item_1line);
+					ArrayAdapter<String> adapter = new ArrayAdapter<String> (this, android.R.layout.simple_dropdown_item_1line, sprzety);
 					
 					textView.setThreshold(3);
 					textView.setAdapter(adapter);
