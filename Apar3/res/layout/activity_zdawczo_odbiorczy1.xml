@@ -38,11 +38,7 @@
         android:text="Data"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dziś" />
+   
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,106 +83,8 @@
         android:text="Dane sprzetu"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nazwa"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </AutoCompleteTextView>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Model"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="AutoCompleteTextView" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Numer seryjny [sn]"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="AutoCompleteTextView" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nazwa jednostki wychodzącej:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="AutoCompleteTextView" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Imię i Nazwisko przedstawiciela"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="AutoCompleteTextView" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nazwa jednostki docelowej:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="AutoCompleteTextView" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Imię i Nazwisko przedstawiciela"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="AutoCompleteTextView" />
-  
+    
+      
 </LinearLayout>
 
   </ScrollView>
