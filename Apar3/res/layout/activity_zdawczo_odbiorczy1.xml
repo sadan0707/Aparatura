@@ -14,12 +14,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/przycisk_powrot3"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:text="&lt;&lt; Powrót" />
-
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
@@ -76,14 +70,26 @@
         android:layout_gravity="center"
         android:layout_marginLeft="15dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dane sprzetu"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    
+        <Button
+            android:id="@+id/przycisk_powrot3"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="left"
+            android:text="&lt;&lt; Powrót" />
+
+        <Button
+            android:id="@+id/btn_wstecz_zd_odb2"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="right"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="DALEJ >>" />
+
+    </LinearLayout>
       
 </LinearLayout>
 

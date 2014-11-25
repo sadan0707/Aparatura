@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     
     String pobrana_nazwa, pobrany_model, zwracana_nazwa, zwacany_model, sprzety;
     Button wyswietl, pobierz, dodawanie, lista, zd_odb, zgloszenie;
-    EditText pobierz_nazwe, pobierz_model;
+    EditText pobierz_nazwe, pobierz_model, etext;
     SimpleCursorAdapter adapter;
     
     AutoCompleteTextView textView;
@@ -83,8 +83,8 @@ public class MainActivity extends Activity {
                 	setContentView(R.layout.activity_main);
                 	
                 	Button dodawanie = (Button)findViewById(R.id.przycisk_dodawanie);
-                	Button zd_odb = (Button)findViewById(R.id.zd_odb);
-                	Button lista = (Button)findViewById(R.id.przycisk_lista);
+                	Button zd_odb = (Button)findViewById(R.id.btn_pobierz);
+                	Button lista = (Button)findViewById(R.id.btn_lista);
                 	Button zgloszenie = (Button)findViewById(R.id.przycisk_zgloszenie);
                 	
                 	dodawanie.setOnClickListener (
@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
                 			new OnClickListener ()
                 			{
                 				public void onClick(View v) {
-                					EkranZdawczoOdbiorczego();
+                					EkranZdawczoOdbiorczego1();
                 				}
                 				
                 			});
@@ -158,16 +158,15 @@ public class MainActivity extends Activity {
 				}
 
 
-				protected void EkranZdawczoOdbiorczego() {
+				protected void EkranZdawczoOdbiorczego1() {
 					// TODO Auto-generated method stub
 					setContentView(R.layout.activity_zdawczo_odbiorczy1);
 					
-					String[] sprzety = {"KARDIOMONITOR", "KARDIOTOKOGRAF", "APARAT RTG", "APARAT EKG"}; 
-					AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
-					ArrayAdapter<String> adapter = new ArrayAdapter<String> (this, android.R.layout.simple_dropdown_item_1line, sprzety);
+					Button btn_dalej_zd_od1 = (Button)findViewById(R.id.btn_wstecz_zd_odb2);
 					
-					textView.setThreshold(3);
-					textView.setAdapter(adapter);
+					
+					
+					
 					
 					Button przycisk_powrot3 = (Button)findViewById(R.id.przycisk_powrot3);
 					
@@ -179,14 +178,62 @@ public class MainActivity extends Activity {
                 				}
                 			});
 					
+					
+					
+					btn_dalej_zd_od1.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranZdawczoOdbiorczego2();
+                				}
+                			});
+					
+				}
+
+
+				protected void EkranZdawczoOdbiorczego2() {
+					setContentView(R.layout.activity_zdawczo_odbiorczy2);
+					
+					Button btn_dalej_zd_odb2 = (Button)findViewById(R.id.btn_dalej_zd_od2);
+					Button btn_wstecz_zd_odb2 = (Button)findViewById(R.id.btn_wstecz_zd_odb2);
+					
+					String[] sprzety = {"KARDIOMONITOR", "KARDIOTOKOGRAF", "APARAT RTG", "APARAT EKG"}; 
+					AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
+					ArrayAdapter<String> adapter = new ArrayAdapter<String> (this, android.R.layout.simple_dropdown_item_1line, sprzety);
+					
+					textView.setThreshold(3);
+					textView.setAdapter(adapter);
+					
+					btn_dalej_zd_odb2.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranZdawczoOdbiorczego3();
+                				}
+                			});
+					
+					btn_wstecz_zd_odb2.setOnClickListener(
+                			new OnClickListener()
+                			{
+                				public void onClick(View v) {
+                					EkranZdawczoOdbiorczego1();
+                				}
+                			});
+					
+				}
+
+
+				protected void EkranZdawczoOdbiorczego3() {
+					setContentView(R.layout.activity_zdawczo_odbiorczy3);
+					
 				}
 
 
 				public void EkranWstawiania() {
 					setContentView(R.layout.activity_wstawianie);
 					
-					Button pobierz = (Button)findViewById(R.id.zd_odb);
-					Button wyswietl = (Button)findViewById(R.id.przycisk_lista);
+					Button pobierz = (Button)findViewById(R.id.btn_pobierz);
+					Button wyswietl = (Button)findViewById(R.id.btn_lista);
 					
 					Button przycisk_powrot2 = (Button)findViewById(R.id.przycisk_powrot2);
 					
@@ -232,8 +279,8 @@ public class MainActivity extends Activity {
 					
 				public void DadajSprzet() {
             		
-					final EditText pobierz_nazwe = (EditText)findViewById(R.id.editText1);
-					final EditText pobierz_model = (EditText)findViewById(R.id.editText2);
+					final EditText pobierz_nazwe = (EditText)findViewById(R.id.pobierz_nazwe);
+					final EditText pobierz_model = (EditText)findViewById(R.id.pobierz_model);
 					
 					
 					

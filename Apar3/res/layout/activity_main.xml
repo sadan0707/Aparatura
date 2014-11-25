@@ -10,13 +10,13 @@
         android:text="DODAWANIE" />
 
     <Button
-        android:id="@+id/zd_odb"
+        android:id="@+id/btn_pobierz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ZDAWCZO - ODBIORCZY" />
 
     <Button
-        android:id="@+id/przycisk_lista"
+        android:id="@+id/btn_lista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LISTA APARATURY" />
