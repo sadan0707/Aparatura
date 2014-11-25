@@ -29,7 +29,7 @@ import android.app.AlertDialog;
 
 public class MainActivity extends Activity {
 
-	//private static final SQLiteDatabase DBAdapter = null; wersja 14
+	//private static final SQLiteDatabase DBAdapter = null; wersja 15
 
 
 	private Cursor c;
